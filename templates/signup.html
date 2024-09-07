@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XCHCVL25YB"></script>
+	<script>
+		  window.dataLayer = window.dataLayer || [];
+		    function gtag(){dataLayer.push(arguments);}
+		    gtag('js', new Date());
+
+		    gtag('config', 'G-XCHCVL25YB');
+	</script>
+    <meta charset="UTF-8">
+    <title>Horizon</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<div class="header">
+        <a href="{% url 'chat' %}" class="btn">Chat</a>
+        <a href="{% url 'directSummary' %}" class="btn">Summary</a>
+        <a href="{% url 'login_view' %}" class="btn">Login</a>
+        <a href="https://github.com/AbhiramNagam/Chatbot-gemma" class="btn">GitHub</a>
+</div>
+
+<div class="flex-container">
+  <div class="content-container">
+    <div class="form-container">
+      <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+        <h1>
+          Sign Up
+        </h1>
+        <br>
+        <br>
+          <span class="subtitle">NAME:</span>
+        <br>
+        <input type="text" name="name" value="{{ user.first_name }}" required>
+          <br>
+        <span class="subtitle">USERNAME:</span>
+        <br>
+        <input type="text" name="username" value="{{ user.username }}" required>
+        <br>
+          <span class="subtitle">EMAIL:</span>
+        <br>
+        <input type="email" name="email" value="{{ user.email }}" required>
+          <br>
+        <span class="subtitle">PASSWORD:</span>
+        <br>
+        <input type="password" name="password" required>
+        <br><br>
+        <input type="submit" value="SUBMIT" class="submit-btn">
+      </form>
+        {% if message is not None %}
+            <p>{{ message }}</p>
+        {% endif %}
+        {% if error is not None %}
+            <p style="color:red">{{ error }}</p>
+        {% endif %}
+        {% if debug is not None %}
+            <p style="color:red">Debug: {{ debug }}</p>
+        {% endif %}
+    </div>
+  </div>
+</div>
+<footer style="margin-top: 190px">Designed and developed by Horizon Team
+</footer>
+</body>
+</html>
+
